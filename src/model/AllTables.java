@@ -1,35 +1,38 @@
-package Backup;
+package model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
-import model.Table;
-
-
 public class AllTables {
+	private static final AllTables instance = new AllTables();
 	
-	private final int TOT_TABLES = 10;				// constant for total number of tables
+	private final int TOT_TABLES = 3;				// constant for total number of tables
 	private HashMap <Integer, Table> alltables;		// HashMap for storing all tables
 	Iterator<Integer> tablesIterator;				// Iterator to iterate through HashMap 
 
 	/**
 	 * Default constructor for table class
 	 */
-	public AllTables(){
-		
+	private AllTables(){
 		alltables = new HashMap<Integer,Table>();
 		initializeTables();
-		
+	}
+
+	/**
+	 * Getting singleton based object reference
+	 * @return AllTables object 
+	 */
+	public static AllTables getInstance() {
+		return instance;
 	}
 	
 	/**
 	 *  private method to initialize HashMap for tables
 	 */
 	private void initializeTables(){
-		for (int i = 0; i < TOT_TABLES; i++){
-			Table tmptable = new Table();
-			alltables.put(tmptable.getTableno(), tmptable);
+		for (int i = 1; i <= TOT_TABLES; i++){
+			alltables.put(i, new Table());
 		}
 	}
 	
@@ -131,8 +134,6 @@ public class AllTables {
 		 tablesIterator = alltables.keySet().iterator();	// Iterator to iterate map
 		 Integer tableno;
 		 Table tmptable;
-		 int tmporderqty=0;				//maintaining max orders to used in comparison 
-		 int tmptableno=0;				//maintaining table no of highest orders  
 		 report += "===============_Cost Of ALL Order For Table Used_================\n\n";
 		while (tablesIterator.hasNext()){
 			tableno = tablesIterator.next();

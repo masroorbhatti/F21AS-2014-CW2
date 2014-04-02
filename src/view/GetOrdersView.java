@@ -5,13 +5,13 @@ package view;
 //Other organizations are possible
 import java.awt.*;
 import java.awt.event.*;
+
 import javax.swing.*;
+
+import Backup.IOClass;
 
 import java.util.*;
 
-
-
-import model.IOClass;
 import controller.GetOrdersController;
 
 public class GetOrdersView  extends JFrame  implements Observer

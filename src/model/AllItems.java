@@ -1,39 +1,35 @@
-package Backup;
-import java.awt.List;
-import java.lang.reflect.Array;
+package model;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.Iterator;
 
 import exceptions.EmptyValue;
 import model.Item;
 
-//import pl.Order;
-//import pl.AllOrders;
-//import pl.EmptyValue;;
-public class Allitems  {
+public class AllItems  {
+	private static final AllItems instance = new AllItems();
 	private TreeSet <Item> allitems;    	// TreeSet for storing allitems
 	Iterator<Item> itemsIterator;			//Iterator used to iterator through the treeset 
-	private Item selectedItem;
-	private HashSet<Item> unorderditems;	// HashSet Storing value of unordered items
-	private HashSet<Item> orderditems;	// HashSet Storing value of ordered Items
-
-
 
 	/***
 	 * Constructor 
 	 */
 
-	public Allitems(ArrayList<Item> itemlistgl) {		
-
-		allitems = new TreeSet<Item>(itemlistgl);
+	private AllItems() {		
+		
+		allitems = new TreeSet<Item>();
 		itemsIterator = allitems.iterator();
-
 	}  
 
+	public void addItem(Item item){
+		allitems.add(item);
+	}
+	
+	
+	public static AllItems getInstance() {
+		return instance;
+	}
+	
 	public TreeSet<Item> getAllItems(){
 		return allitems;
 	}
@@ -62,6 +58,7 @@ public class Allitems  {
 		return report;
 
 	}
+
 	/***
 	 * 	Method to getItemList			
 	 * @return
@@ -88,10 +85,8 @@ public class Allitems  {
 
 		String[] categorylist = new String[20];
 
-		String report="";	
 		int count=0;
 		int repeat = 0;
-		report += ("---------------------------- MENU --------------------------");
 		while(itemsIterator.hasNext()){
 			Item o1 =  (Item) ((Iterator<Item>) itemsIterator).next();
 				for(int i=0;i<categorylist.length;i++){
@@ -121,6 +116,7 @@ public class Allitems  {
 		return categorylist;
 
 	}
+
 	/***
 	 *  Method to get Item With Highest Price
 	 * @return
@@ -138,6 +134,7 @@ public class Allitems  {
 		return max ;
 
 	}
+	
 	/***
 	 * 			
 	 * public Method to fetch item by itemname
@@ -165,59 +162,6 @@ public class Allitems  {
 		return retitem;
 
 	}
-
-	/***
-	 * 	public method to return ordered items
-	 * @return
-	 */
-	public void setOrderedItemList( AllOrders ord){
-		orderditems = new HashSet<Item>();
-		unorderditems = new HashSet<Item>();
-		
-		for(Item it : Global.al.getAllItems()){
-			unorderditems.add(it);
-		}
-		
-		Iterator<Integer> itorder = ord.getOrders().keySet().iterator();
-
-		while (itorder.hasNext()){
-
-			Integer orderno = itorder.next();
-			Item itm = ord.getOrders().get(orderno).getItem();
-			orderditems.add(itm);
-			unorderditems.remove(itm);
-
-		}
-
-	}
-	public String getOrderedItemList(){
-		String report = "";
-		report +=("------Ordered Items---------\n");
-
-		for(Item vl : orderditems){
-			report +=(vl.getItemName() + "\n");
-
-		}
-
-		return report;
-
-	}
-	/***
-	 * 	Public method to return unordered items
-	 * @return
-	 */
-	public String getUnorderedItemList(){
-		String report="";
-		report +=("======_DISHES NOT ORDERED_======\n\n");
-		
-		for(Item vl : unorderditems){
-			report +=(vl.getItemName() + "\n");
-
-		}
-		report +=("\n==============_END_=============\n\n\n\n");
-		return report;
-
-	}
-
+	
 
 }

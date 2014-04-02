@@ -1,4 +1,6 @@
-package Backup;
+package model;
+
+import Backup.Global;
 
 public class Item implements Comparable<Item> {
 

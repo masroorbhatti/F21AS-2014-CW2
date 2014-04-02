@@ -1,7 +1,5 @@
-package Backup;
+package model;
 
-import model.Item;
-import model.Table;
 
 public class Order implements Comparable<Order>  {
 
@@ -9,24 +7,25 @@ public class Order implements Comparable<Order>  {
 	private Table table;
 	private Item item;
 	private int qty;
-	private IOClass io;
+
 	
 	/***
 	 * Public constructor for Order class 
 	 */	
-	public Order(Table table, Item item, int qty , IOClass io){
+	public Order(Table table, Item item, int qty){
 		
 		if(table == null || item == null || qty == 0){
 			throw new IllegalArgumentException("Paramerters cannot be null in class Order");
 		}
-		setOrdernumber(Global.getNewOrderNo());
+		setOrdernumber(OrderNumber.getInstance().getNextOrderNumber());
 		setTable(table); 
 		setItem(item);
 		setQty(qty);
-		this.io = io;
-		//io.updateView(getOrdernumber());
 	}
-
+	public Order(){
+		
+	}
+	
 	/**
 	 * @return the qty
 	 */
@@ -55,16 +54,6 @@ public class Order implements Comparable<Order>  {
 		this.item = item;
 	}
 
-	/**
-	 * 
-	 * @param itemname for creating item
-	 * @param categorydetail for creating item
-	 * @param price for creating item
-	 */
-	public void setItem(String itemname, String categorydetail, double price) {
-		this.item = new Item(itemname, categorydetail, price);
-	}
-	
 	/**
 	 * @return the table
 	 */
@@ -117,26 +106,9 @@ public class Order implements Comparable<Order>  {
 		return orderprice;
 	}
 	
-	/**
-	 * Public method to return price of order
-	 * @return double value for order price
-	 */
-	public double getOrderPriceWithDiscount(){
-		double orderprice=0.0;
-		orderprice = item.geDiscountedtPrice() * qty;
-		return orderprice;
+	private void generateRandomOrder(){
+		
 	}
-	
-	/**
-	 * method to return the discount on current order
-	 * @return double value for discount
-	 */
-	public double getOrderDiscount(){
-		double ordprice = getOrderPrice();
-		double orddiscount = ordprice * Global.discountlistgl.get(this.item.getCategory()) / 100;
-		return orddiscount;	
-		}
-	
-	
 
 }
+

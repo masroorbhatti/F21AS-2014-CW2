@@ -1,4 +1,4 @@
-package model;
+package Backup;
 //import pl.AllTables;
 //import pl.Allitems;
 //import pl.Global;
@@ -17,12 +17,8 @@ import java.util.Observable;
 import java.util.Scanner;
 import java.util.TreeSet;
 
-import Backup.AllOrders;
-import Backup.Allitems;
-import Backup.Global;
-import Backup.Item;
-import Backup.Order;
-import Backup.Table;
+import model.Item;
+import model.Table;
 
 public class IOClass  extends Observable implements  Runnable{
 
@@ -102,7 +98,7 @@ public class IOClass  extends Observable implements  Runnable{
 			tmptable.setReserved(true);
 
 			if(!(itemname.isEmpty()) && itemexist != 0){
-				tmptable.addOrder(new Order(tmptable, ai.getItemFromName(itemname),quantity,this));
+//				tmptable.addOrder(new Order(tmptable, ai.getItemFromName(itemname),quantity,this));
 				Order or = new Order(tmptable,ai.getItemFromName(itemname),quantity,this);
 				this.addOrder(or);
 				//this.updateView(or.getOrdernumber());
