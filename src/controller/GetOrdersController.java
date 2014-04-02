@@ -10,9 +10,7 @@ import view.GetOrdersView;
 import controller.GetOrdersController;
 
 
-/**
- * Simple GUI for Auction application
- */
+
 
 public class GetOrdersController  {
 
