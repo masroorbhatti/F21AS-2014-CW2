@@ -33,10 +33,10 @@ public class Restaurant {
 	}
 	public void openRestaurant(){
 		opened=true;
-		Thread waitergetorder1 = new Thread(new ReceiveOrder(2000,this));
-		Thread waitergetorder2 = new Thread(new ReceiveOrder(6000,this));
-		Thread waitressdeliver1 = new Thread(new DeliverOrder(5000,this));
-		Thread waitressdeliver2 = new Thread(new DeliverOrder(8000,this));
+		waitergetorder1 = new Thread(new ReceiveOrder(2000,this));
+		waitergetorder2 = new Thread(new ReceiveOrder(6000,this));
+		waitressdeliver1 = new Thread(new DeliverOrder(5000,this));
+		waitressdeliver2 = new Thread(new DeliverOrder(8000,this));
 		waitergetorder1.start();
 		waitergetorder2.start();
 		waitressdeliver1.start();

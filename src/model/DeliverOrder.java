@@ -23,6 +23,7 @@ public class DeliverOrder implements Subject,Runnable  {
 				if (AllOrders.getInstance().getActiveOrders().size() > 0) {
 					ord = AllOrders.getInstance().deliverOrderToTable();
 					ActivityLog.getInstance().addLogRecord("Delivered order #: " + ord.getOrdernumber() + " to table #: " + ord.getTable().getTableno());
+					AllTables.getInstance().getTable(ord.getTable().getTableno()).addOrder(ord);
 					notifyObservers();		
 				}
 			}

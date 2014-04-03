@@ -49,7 +49,7 @@ public class ReceiveOrder implements Subject,Runnable {
 	public void notifyObservers()
 	{
 		for( Observer obs : registeredObservers)
-			obs.update(AllOrders.getInstance().getDeliveredOrders());
+			obs.update(AllOrders.getInstance().getActiveOrders());
 	}
 
 
