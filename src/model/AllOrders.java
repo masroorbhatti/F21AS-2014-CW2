@@ -6,10 +6,13 @@ public class AllOrders {
 	private static final  AllOrders instance = new AllOrders();
 	private ArrayList<Order> orders;
 	private ArrayList<Order> activeorders;
+	private ArrayList<Order> deliveredorders;
 	private int ordernumber;
 	
 	private AllOrders(){
 		orders = new ArrayList<Order>();
+		activeorders = new ArrayList<Order>();
+		deliveredorders = new ArrayList<Order>();
 		ordernumber=0;
 	}
 	
@@ -37,11 +40,12 @@ public class AllOrders {
 		return ord;
 	}
 
-	public synchronized Order removeOrder(){
+	public synchronized Order deliverOrderToTable(){
 		Order ord = null;
 		if (activeorders.size() > 0){
 			ord = activeorders.get(0);
 			activeorders.remove(0);
+			deliveredorders.add(ord);
 		}
 		return ord;
 		
@@ -51,6 +55,12 @@ public class AllOrders {
 		orders.add(ord);
 	}
 	
+public ArrayList<Order> getActiveOrders(){
+	return activeorders;
+}
 
+public ArrayList<Order> getDeliveredOrders(){
+	return activeorders;
+}
 
 }

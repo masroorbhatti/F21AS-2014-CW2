@@ -114,7 +114,7 @@ public class ReadFileData {
 			if(!(itemname.isEmpty()) && itemexist != 0){
 
 				Order or = new Order(tmptable,AllItems.getInstance().getItemFromName(itemname),quantity);
-				tmptable.addOrder(or);				
+			//	tmptable.addOrder(or);				
 				AllOrders.getInstance().addOrder(or);
 			}
 			else{

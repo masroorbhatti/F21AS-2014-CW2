@@ -6,31 +6,33 @@ import java.util.List;
 import interfaces.Observer;
 import interfaces.Subject;
 
-public class ReceiveOrder implements Subject,Runnable {
-	private long waittime;
+public class DeliverOrder implements Subject,Runnable  {
+	private long waittime=0;
 	private Order ord=null;
 	Restaurant restaurant;
 	
-	public ReceiveOrder(long waittime,Restaurant restaurant){
+	public DeliverOrder(long waittime,Restaurant restaurant){
 		this.waittime=waittime;
 		this.restaurant=restaurant;
 	}
-	
+
 	public void run() {
-		while (restaurant.isOpened()){
-			try {
+		while ( (restaurant.isOpened()) || (AllOrders.getInstance().getActiveOrders().size() > 0) ){
+			try{
 				Thread.sleep(waittime);
-				ord = AllOrders.getInstance().getNextOrder();
-				ActivityLog.getInstance().addLogRecord("Recieved new order #: " + ord.getOrdernumber());
-				notifyObservers();
+				if (AllOrders.getInstance().getActiveOrders().size() > 0) {
+					ord = AllOrders.getInstance().deliverOrderToTable();
+					ActivityLog.getInstance().addLogRecord("Delivered order #: " + ord.getOrdernumber() + " to table #: " + ord.getTable().getTableno());
+					notifyObservers();		
+				}
 			}
+
 			catch (InterruptedException e) {
 				System.out.println(ord.getOrdernumber() + "  Interrupted");
 			}
 			catch (Exception e) {
 				System.out.println("Order exc" + e.getStackTrace());
 				System.out.println(ord.getOrdernumber() );
-				
 			}
 		}
 	}
@@ -51,6 +53,4 @@ public class ReceiveOrder implements Subject,Runnable {
 		for( Observer obs : registeredObservers)
 			obs.update(AllOrders.getInstance().getDeliveredOrders());
 	}
-
-
 }

@@ -33,7 +33,9 @@ public class AllItems  {
 	public TreeSet<Item> getAllItems(){
 		return allitems;
 	}
-
+	public int getSize(){
+		return allitems.size();
+	}
 	/***
 	 * 	Method to getItemList			
 	 * @return
@@ -160,7 +162,18 @@ public class AllItems  {
 			}
 		}
 		return retitem;
-
+	}
+	public Item getItem(int index){
+		Item retitem = null;
+		int i=0;
+		for(Item it : allitems){
+			if (i == index){
+				retitem = it;
+				break;
+			}
+			i++;
+			}
+		return retitem;
 	}
 	
 

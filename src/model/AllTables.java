@@ -27,6 +27,11 @@ public class AllTables {
 		return instance;
 	}
 	
+	public int getSize(){
+		return alltables.size();
+	}
+	
+	
 	/**
 	 *  private method to initialize HashMap for tables
 	 */

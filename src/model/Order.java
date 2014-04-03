@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Random;
+
 
 public class Order implements Comparable<Order>  {
 
@@ -21,10 +23,27 @@ public class Order implements Comparable<Order>  {
 		setTable(table); 
 		setItem(item);
 		setQty(qty);
+		AllTables.getInstance().getTable(table.getTableno()).addOrder(this);
 	}
 	public Order(){
-		
+		setOrdernumber(OrderNumber.getInstance().getNextOrderNumber());
+		setTable(getRandomTable()); 
+		setItem(getRandomItem());
+		setQty(new Random().nextInt(5));
+		AllTables.getInstance().getTable(table.getTableno()).addOrder(this);
 	}
+
+	private Item getRandomItem(){
+		Random generator = new Random();
+		int randitemno = generator.nextInt(AllItems.getInstance().getSize());
+		return (AllItems.getInstance().getItem(randitemno));
+	}
+	
+	private Table getRandomTable(){
+		Random generator = new Random();
+		int randtableno = generator.nextInt(AllTables.getInstance().getSize());
+		return (AllTables.getInstance().getTable(randtableno) );
+	}	
 	
 	/**
 	 * @return the qty
@@ -104,10 +123,6 @@ public class Order implements Comparable<Order>  {
 		double orderprice=0.0;
 		orderprice = item.getPrice() * qty;
 		return orderprice;
-	}
-	
-	private void generateRandomOrder(){
-		
 	}
 
 }
