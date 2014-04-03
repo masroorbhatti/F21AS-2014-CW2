@@ -41,7 +41,7 @@ public class AllItems  {
 	public String getItemListByCategory(String category){
 
 		String report="";	
-	//	report += ("----------------------------MAIN MENU--------------------------");
+		report += ("----------------------------MAIN MENU--------------------------");
 
 		report += String.format("%-1s",category + "\n");
 		report += String.format("%-19s","-----------------------------\n");

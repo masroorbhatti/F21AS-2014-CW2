@@ -11,7 +11,7 @@ public class ReadFileData {
 	private final String menufilename = "menudata.csv";
 	private File file;
 	public ReadFileData(){
-
+System.out.println("Consructor");
 	}
 
 	
@@ -25,8 +25,8 @@ public class ReadFileData {
 				if (inputLine.length() != 0) {//ignored if blank line
 						processMenu(inputLine);
 				}
-				read.close();
 			}
+			read.close();
 		}
 		//if the file is not found, stop with system exit
 		catch (FileNotFoundException fnf){
@@ -80,8 +80,8 @@ public class ReadFileData {
 				if (inputLine.length() != 0) {//ignored if blank line
 						processOrder(inputLine);
 				}
-				read.close();
 			}
+			read.close();
 		}
 		//if the file is not found, stop with system exit
 		catch (FileNotFoundException fnf){
