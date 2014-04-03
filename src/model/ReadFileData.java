@@ -10,8 +10,9 @@ public class ReadFileData {
 	private final String orderfilename = "orderdata.csv";
 	private final String menufilename = "menudata.csv";
 	private File file;
+	
 	public ReadFileData(){
-System.out.println("Consructor");
+		System.out.println("Consructor");
 	}
 
 	

@@ -38,9 +38,11 @@ public class AllOrders {
 	}
 
 	public synchronized Order removeOrder(){
-		
-		Order ord = orders.get(0);
-		activeorders.remove(0);
+		Order ord = null;
+		if (activeorders.size() > 0){
+			ord = activeorders.get(0);
+			activeorders.remove(0);
+		}
 		return ord;
 		
 	}

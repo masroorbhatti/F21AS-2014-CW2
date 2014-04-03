@@ -1,7 +1,2 @@
-/controller
-/main
-/model
-/view
-/Backup
 /interfaces
-/exceptions
+/model
