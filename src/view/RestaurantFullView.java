@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.EventQueue;
+import java.awt.event.KeyEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -9,9 +10,11 @@ import javax.swing.border.EmptyBorder;
 import model.DeliverOrder;
 import model.ReceiveOrder;
 import model.Restaurant;
+
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JMenu;
+import javax.swing.JSeparator;
 
 public class RestaurantFullView extends JFrame {
 
@@ -45,7 +48,9 @@ public class RestaurantFullView extends JFrame {
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
-		JMenu mnRestaurantOperations = new JMenu("Restaurant Operations");
+		JMenu mnRestaurantOperations = new JMenu("Operations");
+		mnRestaurantOperations.setMnemonic(KeyEvent.VK_O);
+		mnRestaurantOperations.setDisplayedMnemonicIndex(0);
 		menuBar.add(mnRestaurantOperations);
 		
 		JMenuItem mntmOpenRestaurant = new JMenuItem("Open Restaurant");
@@ -53,6 +58,35 @@ public class RestaurantFullView extends JFrame {
 		
 		JMenuItem mntmCloseRestaurant = new JMenuItem("Close Restaurant");
 		mnRestaurantOperations.add(mntmCloseRestaurant);
+		
+		JSeparator separator = new JSeparator();
+		mnRestaurantOperations.add(separator);
+		
+		JMenuItem mntmExitApplication = new JMenuItem("Exit Application");
+		mnRestaurantOperations.add(mntmExitApplication);
+		
+		JMenu mnreports = new JMenu("Reports");
+		mnreports.setMnemonic(KeyEvent.VK_R);
+		mnreports.setDisplayedMnemonicIndex(0);
+		menuBar.add(mnreports);
+		
+		JMenuItem mntmStatusReport = new JMenuItem("Status Report");
+		mnreports.add(mntmStatusReport);
+		
+		JMenuItem mntmShowBill = new JMenuItem("Show Bill - Table 1");
+		mnreports.add(mntmShowBill);
+		
+		JMenuItem mntmShowBill_1 = new JMenuItem("Show Bill - Table 2");
+		mnreports.add(mntmShowBill_1);
+		
+		JMenuItem mntmShowBill_2 = new JMenuItem("Show Bill - Table 3");
+		mnreports.add(mntmShowBill_2);
+		
+		JSeparator separator_1 = new JSeparator();
+		mnreports.add(separator_1);
+		
+		JMenuItem mntmGenerateReport = new JMenuItem("Generate Report");
+		mnreports.add(mntmGenerateReport);
 		setVisible(true);
 		
 		
