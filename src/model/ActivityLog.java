@@ -33,4 +33,8 @@ public class ActivityLog {
 		log.add(status + " at " + Calendar.getInstance().getTime() );
 	}
 	
+	public ArrayList<String> getLogArray(){
+		return new ArrayList<String>(log);
+	}
+	
 }

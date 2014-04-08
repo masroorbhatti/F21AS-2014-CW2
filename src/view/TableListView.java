@@ -39,7 +39,7 @@ public class TableListView extends JPanel  implements Observer{
 		for (int i=0; i < deliverorders.length; i++){
 			deliverorders[i].registerObserver(this);
 		}
-		update(new ArrayList<Order>());
+		update(new ArrayList<Order>(),new ArrayList<Order>());
 
 	}
 	
@@ -49,7 +49,7 @@ public class TableListView extends JPanel  implements Observer{
 	
 	
 	@Override
-	public synchronized  void update(ArrayList<Order> deliveredorders) {
+	public synchronized  void update(ArrayList<Order> activeorders,ArrayList<Order> deliveredorders) {
 		model = new DefaultListModel<String>();
 		int ordercount=0;
 		model.addElement(addHeader());

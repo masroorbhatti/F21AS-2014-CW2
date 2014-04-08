@@ -6,5 +6,5 @@ import model.Order;
 
 public interface Observer
 {
-  public void update(ArrayList<Order> orders);
+  public void update(ArrayList<Order> acitveorders,ArrayList<Order> deliveredorders );
 }

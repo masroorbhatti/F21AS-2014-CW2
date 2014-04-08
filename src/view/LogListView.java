@@ -8,6 +8,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import model.ActivityLog;
 import model.AllOrders;
 import model.DeliverOrder;
 import model.Order;
@@ -24,7 +25,7 @@ import java.awt.GridLayout;
 
 import javax.swing.JLabel;
 
-public class OrderListView extends JPanel implements Observer {
+public class LogListView extends JPanel implements Observer {
 
 	/**
 	 * Create the panel.
@@ -35,10 +36,10 @@ public class OrderListView extends JPanel implements Observer {
 	 * @wbp.nonvisual location=103,284
 	 */
 
-	private JLabel labelpend = new JLabel("Pending Orders: ");
-	private JLabel labeltitle = new JLabel("C e n t r a l   K i t c h e n");
+	private JLabel labeltotorder = new JLabel("Total Orders: ");
+	private JLabel labeltitle = new JLabel("A c t i v i t y      L o g");
 
-	public OrderListView(ReceiveOrder[] receiveorders,DeliverOrder[] deliverorders) {
+	public LogListView(ReceiveOrder[] receiveorders,DeliverOrder[] deliverorders) {
 		setLayout(new BorderLayout(0, 0));
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -48,7 +49,7 @@ public class OrderListView extends JPanel implements Observer {
 		orderlist = new JList<String>();
 		scrollPane.setViewportView(orderlist);
 		add(labeltitle,BorderLayout.NORTH);
-		add(labelpend,BorderLayout.SOUTH);
+		add(labeltotorder,BorderLayout.SOUTH);
 
 
 		for (int i=0; i < receiveorders.length; i++){
@@ -59,31 +60,21 @@ public class OrderListView extends JPanel implements Observer {
 			deliverorders[i].registerObserver(this);
 		}
 
-		update(new ArrayList<Order>(),new ArrayList<Order>());
-	
 	}
 
-	private String addHeader(){
-		String header="";
-		header += String.format("%-5s", "ID");
-		header+= String.format("%-37s", "Item");
-		header+= String.format("%-5s", "Qty");
-		header+= String.format("%-7s", "TableNo");
-		return (header);
-	}
+
 	@Override
 	public  synchronized void update(ArrayList<Order> activeorders,ArrayList<Order> deliveredorders) {
 		model = new DefaultListModel<String>();
-		int countorder=0;
-		model.addElement(addHeader());
-	    for(Order ord: activeorders){
-	         model.addElement(ord.getOrderData());
-	         countorder++;
+
+	    for(String item: ActivityLog.getInstance().getLogArray()){
+	         model.addElement(item);
+
 	    }    
 	    
 	    orderlist.setModel(model);     
 	    orderlist.setSelectedIndex(0);
-	    labelpend.setText("Pending Orders: " + countorder);
+	    labeltotorder.setText("Total Orders: " + (activeorders.size() + deliveredorders.size()) );
 		
 	}
 }

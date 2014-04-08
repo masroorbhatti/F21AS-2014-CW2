@@ -1,6 +1,7 @@
 package main;
 
-import view.RestaurantFullView;
+import controller.*;
+import view.RestaurantGUI;
 import model.DeliverOrder;
 import model.ReadFileData;
 import model.ReceiveOrder;
@@ -13,9 +14,12 @@ public class Main
     	DeliverOrder deliverorders[] = {new DeliverOrder(13000),new DeliverOrder(14000),new DeliverOrder(11000)} ;
     	Restaurant restaurant = new Restaurant(receiveorders,deliverorders);
 
-		RestaurantFullView frame = new RestaurantFullView(receiveorders,deliverorders,restaurant);
-		frame.setVisible(true);
-		restaurant.openRestaurant();
+		RestaurantGUI restaurantgui = new RestaurantGUI(receiveorders,deliverorders,restaurant);
+		restaurantgui.setVisible(true);
+
+		OpenRestaurantController openrestaurant = new OpenRestaurantController(restaurantgui,restaurant);
+		CloseRestaurantController closerestaurant = new CloseRestaurantController(restaurantgui,restaurant);
+		ExitApplicationController exitapplication = new ExitApplicationController(restaurantgui);
     	
  
     }

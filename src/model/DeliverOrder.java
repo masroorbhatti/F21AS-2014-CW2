@@ -36,6 +36,7 @@ public class DeliverOrder implements Subject,Runnable  {
 				System.out.println(ord.getOrdernumber() );
 			}
 		}
+		ActivityLog.getInstance().addLogRecord("All orderes delivered and restaurant closed");
 	}
 	private List<Observer> registeredObservers = new LinkedList<Observer>();
 	//methods to register, remove and notify observers
@@ -52,6 +53,6 @@ public class DeliverOrder implements Subject,Runnable  {
 	public synchronized void notifyObservers()
 	{
 		for( Observer obs : registeredObservers)
-			obs.update(AllOrders.getInstance().getDeliveredOrders());
+			obs.update(AllOrders.getInstance().getActiveOrders(),AllOrders.getInstance().getDeliveredOrders());
 	}
 }

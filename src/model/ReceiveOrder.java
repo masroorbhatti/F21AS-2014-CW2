@@ -35,6 +35,7 @@ public class ReceiveOrder implements Subject,Runnable {
 				
 			}
 		}
+		ActivityLog.getInstance().addLogRecord("Closing reataurant - New orders stoped");
 	}
 	private List<Observer> registeredObservers = new LinkedList<Observer>();
 	//methods to register, remove and notify observers
@@ -51,7 +52,7 @@ public class ReceiveOrder implements Subject,Runnable {
 	public void notifyObservers()
 	{
 		for( Observer obs : registeredObservers)
-			obs.update(AllOrders.getInstance().getActiveOrders());
+			obs.update(AllOrders.getInstance().getActiveOrders(),AllOrders.getInstance().getDeliveredOrders());
 	}
 
 
