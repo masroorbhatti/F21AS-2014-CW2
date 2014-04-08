@@ -20,7 +20,7 @@ public class RestaurantFullView extends JFrame {
 		getContentPane().setLayout(null);
 		setBounds(100, 100, 800, 640);
 		
-		OrderListView orderListView = new OrderListView(receiveorders,deliverorders);
+		OrderListView orderListView = new OrderListView(receiveorders);
 		orderListView.setBounds(0, 0, 230, 260);
 		
 		TableListView tableListView1 = new TableListView(deliverorders,1);

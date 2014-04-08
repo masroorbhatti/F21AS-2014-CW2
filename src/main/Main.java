@@ -9,8 +9,8 @@ public class Main
 {
     public static void main (String arg[]) {
 
-    	ReceiveOrder receiveorders[] = {new ReceiveOrder(1000)} ;
-    	DeliverOrder deliverorders[] = {new DeliverOrder(2000),new DeliverOrder(2000)} ;
+    	ReceiveOrder receiveorders[] = {new ReceiveOrder(7000),new ReceiveOrder(8000)} ;
+    	DeliverOrder deliverorders[] = {new DeliverOrder(13000),new DeliverOrder(14000),new DeliverOrder(11000)} ;
     	Restaurant restaurant = new Restaurant(receiveorders,deliverorders);
 
 		RestaurantFullView frame = new RestaurantFullView(receiveorders,deliverorders,restaurant);

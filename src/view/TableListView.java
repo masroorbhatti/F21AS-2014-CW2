@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import interfaces.Observer;
 
 import javax.swing.DefaultListModel;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -19,6 +20,7 @@ public class TableListView extends JPanel  implements Observer{
 	private JList<String> deliverlist;
 	private DefaultListModel<String> model;
 	private int tableno;
+	private JLabel label = new JLabel("Total Orders Delivered: ");
 	/**
 	 * Create the panel.
 	 */
@@ -32,9 +34,13 @@ public class TableListView extends JPanel  implements Observer{
 		deliverlist = new JList<String>();
 		scrollPane.setViewportView(deliverlist);
 		
+		add(label,BorderLayout.SOUTH);
+		
 		for (int i=0; i < deliverorders.length; i++){
 			deliverorders[i].registerObserver(this);
 		}
+		update(new ArrayList<Order>());
+
 	}
 	
 	private String addHeader(){
@@ -45,15 +51,19 @@ public class TableListView extends JPanel  implements Observer{
 	@Override
 	public synchronized  void update(ArrayList<Order> deliveredorders) {
 		model = new DefaultListModel<String>();
+		int ordercount=0;
 		model.addElement(addHeader());
 	    for(Order ord: deliveredorders){
 	        if (ord.getTable().getTableno() == tableno) { 
 	        	model.addElement(ord.getTableOrderData());
+	        	ordercount++;
 	        }
 	    }    
 	    
 	    deliverlist.setModel(model);     
 	    deliverlist.setSelectedIndex(0);
+	    label.setText("Total Orders Delivered: " + ordercount);
+	    
 		
 	}
 
