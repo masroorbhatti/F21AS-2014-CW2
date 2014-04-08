@@ -1,31 +1,23 @@
 package main;
 
-import model.AllItems;
-import model.AllTables;
+import view.RestaurantFullView;
+import model.DeliverOrder;
 import model.ReadFileData;
+import model.ReceiveOrder;
+import model.Restaurant;
 public class Main
 {
     public static void main (String arg[]) {
-    	
-    	/*IOClass model = new IOClass();  //the model
-    	
-    	
-        GetOrdersView   view  = new GetOrdersView  (model);
-        GetOrdersController controller = new GetOrdersController(model, view);   
-        view.setVisible(true);*/
-    	
-    	System.out.println(AllTables.getInstance().getTotalNumberOfTables());
-    	ReadFileData rfd = new ReadFileData();
-    	try {
-    		rfd.readMenuFile();
-    		rfd.readOrderFile();
-    	}
-    	catch (Exception e){
-    		System.out.println(e);
-    	}
 
-    	System.out.println(AllItems.getInstance().getItemListByCategory("Main"));
-    	System.out.println(AllItems.getInstance().getCategoryList().length);
+    	ReceiveOrder receiveorders[] = {new ReceiveOrder(1000),new ReceiveOrder(5000)} ;
+    	DeliverOrder deliverorders[] = {new DeliverOrder(2000), new DeliverOrder(2000)} ;
+    	Restaurant restaurant = new Restaurant(receiveorders,deliverorders);
+
+		RestaurantFullView frame = new RestaurantFullView(receiveorders,deliverorders,restaurant);
+		frame.setVisible(true);
+		restaurant.openRestaurant();
+    	
+
     }
 
 

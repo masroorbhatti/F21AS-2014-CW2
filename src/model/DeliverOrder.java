@@ -9,15 +9,13 @@ import interfaces.Subject;
 public class DeliverOrder implements Subject,Runnable  {
 	private long waittime=0;
 	private Order ord=null;
-	Restaurant restaurant;
 	
-	public DeliverOrder(long waittime,Restaurant restaurant){
+	public DeliverOrder(long waittime){
 		this.waittime=waittime;
-		this.restaurant=restaurant;
 	}
 
 	public void run() {
-		while ( (restaurant.isOpened()) || (AllOrders.getInstance().getActiveOrders().size() > 0) ){
+		while ( (RestaurantState.getInstance().isOpened()) || (AllOrders.getInstance().getActiveOrders().size() > 0) ){
 			try{
 				Thread.sleep(waittime);
 				if (AllOrders.getInstance().getActiveOrders().size() > 0) {

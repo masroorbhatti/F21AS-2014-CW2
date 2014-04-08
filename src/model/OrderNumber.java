@@ -21,6 +21,6 @@ public class OrderNumber {
 	}	
 	
 	public int getNextOrderNumber(){
-		return ++ordernumber;
+		return ordernumber++;
 	}
 }

@@ -23,14 +23,12 @@ public class Order implements Comparable<Order>  {
 		setTable(table); 
 		setItem(item);
 		setQty(qty);
-		AllTables.getInstance().getTable(table.getTableno()).addOrder(this);
 	}
 	public Order(){
 		setOrdernumber(OrderNumber.getInstance().getNextOrderNumber());
 		setTable(getRandomTable()); 
 		setItem(getRandomItem());
-		setQty(new Random().nextInt(5));
-		AllTables.getInstance().getTable(table.getTableno()).addOrder(this);
+		setQty(new Random().nextInt(5) + 1);
 	}
 
 	private Item getRandomItem(){
@@ -41,7 +39,7 @@ public class Order implements Comparable<Order>  {
 	
 	private Table getRandomTable(){
 		Random generator = new Random();
-		int randtableno = generator.nextInt(AllTables.getInstance().getSize());
+		int randtableno = generator.nextInt(AllTables.getInstance().getSize()-1) + 1 ;
 		return (AllTables.getInstance().getTable(randtableno) );
 	}	
 	
@@ -123,6 +121,20 @@ public class Order implements Comparable<Order>  {
 		double orderprice=0.0;
 		orderprice = item.getPrice() * qty;
 		return orderprice;
+	}
+
+	public String getOrderData(){
+	
+		String retstr= ordernumber + "  " + item.getItemName() + "  " + qty + "  " + table.getTableno();
+		
+		return retstr;
+	}
+	
+	public String getTableOrderData(){
+		
+		String retstr= ordernumber + "  " + item.getItemName() + " * " + qty ;
+		
+		return retstr;
 	}
 
 }

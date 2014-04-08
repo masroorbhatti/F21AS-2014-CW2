@@ -38,6 +38,7 @@ public class AllTables {
 	private void initializeTables(){
 		for (int i = 1; i <= TOT_TABLES; i++){
 			alltables.put(i, new Table());
+			alltables.get(i).setTableno(i);
 		}
 	}
 	

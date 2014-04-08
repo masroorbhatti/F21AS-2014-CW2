@@ -9,19 +9,19 @@ import interfaces.Subject;
 public class ReceiveOrder implements Subject,Runnable {
 	private long waittime;
 	private Order ord=null;
-	Restaurant restaurant;
+
 	
-	public ReceiveOrder(long waittime,Restaurant restaurant){
+	public ReceiveOrder(long waittime){
 		this.waittime=waittime;
-		this.restaurant=restaurant;
+
 	}
 	
 	public void run() {
-		while (restaurant.isOpened()){
+		while (RestaurantState.getInstance().isOpened()){
 			try {
 				Thread.sleep(waittime);
 				ord = AllOrders.getInstance().getNextOrder();
-				ActivityLog.getInstance().addLogRecord("Recieved new order #: " + ord.getOrdernumber());
+				ActivityLog.getInstance().addLogRecord("Recieved new order #: " + ord.getOrdernumber()+ " by waiter-" + Thread.currentThread().getName() );
 				notifyObservers();
 			}
 			catch (InterruptedException e) {

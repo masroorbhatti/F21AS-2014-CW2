@@ -23,6 +23,9 @@ public class AllOrders {
 	public static AllOrders getInstance() {
 		return instance;
 	}
+	public int getSize(){
+		return orders.size();
+	}
 	
 	public synchronized Order getNextOrder(){
 		Order ord=null;

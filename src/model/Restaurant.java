@@ -5,17 +5,26 @@ import java.io.FileNotFoundException;
 public class Restaurant {
 
 	private ReadFileData rfd = new ReadFileData();
-	private boolean opened = false;
-
-	private Thread waitergetorder1;
-	private Thread waitergetorder2;
-	private Thread waitressdeliver1;
-	private Thread waitressdeliver2;
+	private int totreceiverer;
+	private int totdeliverer;
+	private Thread[] waitergetorder;
+	private Thread[] waitressdeliver;
 	
-	public Restaurant(){
+	
+	public Restaurant(ReceiveOrder[] receiveorders,DeliverOrder[] deliverorders){
 		
 		Initialize();
-		
+		totreceiverer = receiveorders.length;
+		totdeliverer = deliverorders.length;
+		waitergetorder = new Thread[totreceiverer];
+		waitressdeliver = new Thread[totdeliverer];
+		for (int i =0;i < totreceiverer; i++){
+			waitergetorder[i] = new Thread(receiveorders[i]);
+			waitergetorder[i].setName(""+i+1);
+		}
+		for (int i =0;i < totdeliverer; i++){
+			waitressdeliver[i] = new Thread(receiveorders[i]);	
+		} 
 	}
 	
 	private void Initialize() {
@@ -28,19 +37,14 @@ public class Restaurant {
 			System.out.println("Input file(s) are missing");
 		}
 	}
-	public boolean isOpened(){
-		return opened;
-	}
 	public void openRestaurant(){
-		opened=true;
-		waitergetorder1 = new Thread(new ReceiveOrder(2000,this));
-		waitergetorder2 = new Thread(new ReceiveOrder(6000,this));
-		waitressdeliver1 = new Thread(new DeliverOrder(5000,this));
-		waitressdeliver2 = new Thread(new DeliverOrder(8000,this));
-		waitergetorder1.start();
-		waitergetorder2.start();
-		waitressdeliver1.start();
-		waitressdeliver2.start();
+		RestaurantState.getInstance().setState(true);
+		
+		for (int i =0;i < this.totreceiverer; i++)
+			waitergetorder[i].start();	
+		
+		for (int i =0;i < this.totdeliverer; i++)
+			waitressdeliver[i].start();	
 		
 	}
 	
