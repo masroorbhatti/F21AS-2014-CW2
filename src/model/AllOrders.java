@@ -63,7 +63,7 @@ public ArrayList<Order> getActiveOrders(){
 }
 
 public ArrayList<Order> getDeliveredOrders(){
-	return activeorders;
+	return deliveredorders;
 }
 
 }

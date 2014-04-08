@@ -20,7 +20,9 @@ public class DeliverOrder implements Subject,Runnable  {
 				Thread.sleep(waittime);
 				if (AllOrders.getInstance().getActiveOrders().size() > 0) {
 					ord = AllOrders.getInstance().deliverOrderToTable();
-					ActivityLog.getInstance().addLogRecord("Delivered order #: " + ord.getOrdernumber() + " to table #: " + ord.getTable().getTableno());
+					String strlog = "Delivered order #: " + ord.getOrdernumber() + " to table #: " + ord.getTable().getTableno() + " by " + Thread.currentThread().getName();
+					ActivityLog.getInstance().addLogRecord(strlog);
+					System.out.println(strlog);
 					AllTables.getInstance().getTable(ord.getTable().getTableno()).addOrder(ord);
 					notifyObservers();		
 				}
@@ -42,12 +44,12 @@ public class DeliverOrder implements Subject,Runnable  {
 		registeredObservers.add( obs);
 	}
 	
-	public void removeObserver( Observer obs)
+	public void removeObserver(Observer obs)
 	{
 		registeredObservers.remove( obs);
 	}
 	
-	public void notifyObservers()
+	public synchronized void notifyObservers()
 	{
 		for( Observer obs : registeredObservers)
 			obs.update(AllOrders.getInstance().getDeliveredOrders());

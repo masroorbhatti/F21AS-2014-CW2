@@ -20,10 +20,11 @@ public class Restaurant {
 		waitressdeliver = new Thread[totdeliverer];
 		for (int i =0;i < totreceiverer; i++){
 			waitergetorder[i] = new Thread(receiveorders[i]);
-			waitergetorder[i].setName(""+i+1);
+			waitergetorder[i].setName("Waiter "+i+1);
 		}
 		for (int i =0;i < totdeliverer; i++){
-			waitressdeliver[i] = new Thread(receiveorders[i]);	
+			waitressdeliver[i] = new Thread(deliverorders[i]);	
+			waitressdeliver[i].setName("Waitress "+i+1);
 		} 
 	}
 	

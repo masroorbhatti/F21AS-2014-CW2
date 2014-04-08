@@ -39,7 +39,7 @@ public class Order implements Comparable<Order>  {
 	
 	private Table getRandomTable(){
 		Random generator = new Random();
-		int randtableno = generator.nextInt(AllTables.getInstance().getSize()-1) + 1 ;
+		int randtableno = generator.nextInt(AllTables.getInstance().getSize()) + 1 ;
 		return (AllTables.getInstance().getTable(randtableno) );
 	}	
 	

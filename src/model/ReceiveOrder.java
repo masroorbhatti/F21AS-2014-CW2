@@ -21,7 +21,9 @@ public class ReceiveOrder implements Subject,Runnable {
 			try {
 				Thread.sleep(waittime);
 				ord = AllOrders.getInstance().getNextOrder();
-				ActivityLog.getInstance().addLogRecord("Recieved new order #: " + ord.getOrdernumber()+ " by waiter-" + Thread.currentThread().getName() );
+				String strlog = "Recieved new order #: " + ord.getOrdernumber()+ " by " + Thread.currentThread().getName() ;
+				ActivityLog.getInstance().addLogRecord(strlog);
+				System.out.println(strlog);
 				notifyObservers();
 			}
 			catch (InterruptedException e) {

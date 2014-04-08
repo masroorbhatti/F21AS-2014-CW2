@@ -16,7 +16,7 @@ import model.Order;
 public class TableListView extends JPanel  implements Observer{
 
 	
-	private JList deliverlist;
+	private JList<String> deliverlist;
 	private DefaultListModel<String> model;
 	private int tableno;
 	/**
@@ -29,7 +29,7 @@ public class TableListView extends JPanel  implements Observer{
 		JScrollPane scrollPane = new JScrollPane();
 		add(scrollPane, BorderLayout.CENTER);
 		
-		deliverlist = new JList();
+		deliverlist = new JList<String>();
 		scrollPane.setViewportView(deliverlist);
 		
 		for (int i=0; i < deliverorders.length; i++){
@@ -43,12 +43,12 @@ public class TableListView extends JPanel  implements Observer{
 	
 	
 	@Override
-	public synchronized  void update(ArrayList<Order> orders) {
+	public synchronized  void update(ArrayList<Order> deliveredorders) {
 		model = new DefaultListModel<String>();
 		model.addElement(addHeader());
-	    for(Order ord: orders){
+	    for(Order ord: deliveredorders){
 	        if (ord.getTable().getTableno() == tableno) { 
-	        	model.addElement(ord.getOrderData());
+	        	model.addElement(ord.getTableOrderData());
 	        }
 	    }    
 	    
