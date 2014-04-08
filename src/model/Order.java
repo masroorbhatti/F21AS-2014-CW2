@@ -125,7 +125,12 @@ public class Order implements Comparable<Order>  {
 
 	public String getOrderData(){
 	
-		String retstr= ordernumber + "  " + item.getItemName() + "  " + qty + "  " + table.getTableno();
+		String retstr="";
+		retstr += String.format("%5d", ordernumber);
+		retstr+= String.format("%37s", item.getItemName());
+		retstr+= String.format("%5d", qty);
+		retstr+= String.format("%7d", table.getTableno());
+
 		
 		return retstr;
 	}

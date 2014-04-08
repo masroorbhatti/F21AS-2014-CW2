@@ -9,6 +9,9 @@ import javax.swing.border.EmptyBorder;
 import model.DeliverOrder;
 import model.ReceiveOrder;
 import model.Restaurant;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JMenu;
 
 public class RestaurantFullView extends JFrame {
 
@@ -21,7 +24,7 @@ public class RestaurantFullView extends JFrame {
 		setBounds(100, 100, 800, 640);
 		
 		OrderListView orderListView = new OrderListView(receiveorders);
-		orderListView.setBounds(0, 0, 230, 260);
+		orderListView.setBounds(500, 13, 230, 260);
 		
 		TableListView tableListView1 = new TableListView(deliverorders,1);
 		tableListView1.setBounds(0, 300, 230, 260);
@@ -38,9 +41,20 @@ public class RestaurantFullView extends JFrame {
 		getContentPane().add(tableListView1);
 		getContentPane().add(tableListView2);
 		getContentPane().add(tableListView3);
+		
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		
+		JMenu mnRestaurantOperations = new JMenu("Restaurant Operations");
+		menuBar.add(mnRestaurantOperations);
+		
+		JMenuItem mntmOpenRestaurant = new JMenuItem("Open Restaurant");
+		mnRestaurantOperations.add(mntmOpenRestaurant);
+		
+		JMenuItem mntmCloseRestaurant = new JMenuItem("Close Restaurant");
+		mnRestaurantOperations.add(mntmCloseRestaurant);
 		setVisible(true);
 		
 		
 	}
-
 }

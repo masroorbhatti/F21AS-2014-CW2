@@ -62,7 +62,7 @@ public class TableListView extends JPanel  implements Observer{
 	    
 	    deliverlist.setModel(model);     
 	    deliverlist.setSelectedIndex(0);
-	    label.setText("Total Orders Delivered: " + ordercount);
+	    label.setText("Orders Delivered: " + ordercount);
 	    
 		
 	}

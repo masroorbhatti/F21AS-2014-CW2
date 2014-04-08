@@ -36,7 +36,8 @@ public class OrderListView extends JPanel implements Observer {
 	 */
 
 	private JLabel labelpend = new JLabel("Pending Orders: ");
-	
+	private JLabel labeltitle = new JLabel("C e n t r a l   K i t c h e n");
+
 	public OrderListView(ReceiveOrder[] receiveorders) {
 		setLayout(new BorderLayout(0, 0));
 		
@@ -46,6 +47,7 @@ public class OrderListView extends JPanel implements Observer {
 		
 		orderlist = new JList<String>();
 		scrollPane.setViewportView(orderlist);
+		add(labeltitle,BorderLayout.NORTH);
 		add(labelpend,BorderLayout.SOUTH);
 
 
@@ -57,7 +59,12 @@ public class OrderListView extends JPanel implements Observer {
 	}
 
 	private String addHeader(){
-		return ("ID   Item            Qty   Table");
+		String header="";
+		header += String.format("%-5s", "ID");
+		header+= String.format("%-37s", "Item");
+		header+= String.format("%-5s", "Qty");
+		header+= String.format("%-7s", "TableNo");
+		return (header);
 	}
 	@Override
 	public  synchronized void update(ArrayList<Order> activeorders) {
