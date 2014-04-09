@@ -3,7 +3,6 @@ package model;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-
 /***
  * implementing Activity log based on lazy initialization
  * implementing 2-phase synchronization for avoiding racing condition.
