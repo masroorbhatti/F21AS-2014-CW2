@@ -3,7 +3,6 @@ package main;
 import controller.*;
 import view.RestaurantGUI;
 import model.DeliverOrder;
-import model.ReadFileData;
 import model.ReceiveOrder;
 import model.Restaurant;
 public class Main
@@ -20,6 +19,7 @@ public class Main
 		OpenRestaurantController openrestaurant = new OpenRestaurantController(restaurantgui,restaurant);
 		CloseRestaurantController closerestaurant = new CloseRestaurantController(restaurantgui,restaurant);
 		ExitApplicationController exitapplication = new ExitApplicationController(restaurantgui);
+		ShowBill1Controller showreport = new ShowBill1Controller(restaurantgui,1);
     	
  
     }

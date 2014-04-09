@@ -1,13 +1,9 @@
 package view;
 
-import java.awt.EventQueue;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
 import model.DeliverOrder;
 import model.ReceiveOrder;
 import model.Restaurant;
@@ -19,6 +15,8 @@ import javax.swing.JSeparator;
 
 public class RestaurantGUI extends JFrame {
 
+	private ReportDisplayView reportdisplayview = new ReportDisplayView();
+	
 	JMenuBar menuBar = new JMenuBar();
 	
 	JSeparator separator;
@@ -29,9 +27,9 @@ public class RestaurantGUI extends JFrame {
 	JMenuItem mntmExitApplication;
 	
 	JMenuItem mntmStatusReport;
-	JMenuItem mntmShowBill;
 	JMenuItem mntmShowBill_1;
 	JMenuItem mntmShowBill_2;
+	JMenuItem mntmShowBill_3;
 	JMenuItem mntmGenerateReport;
 	
 	/**
@@ -45,6 +43,8 @@ public class RestaurantGUI extends JFrame {
 		LogListView logListView = new LogListView(receiveorders,deliverorders );
 		logListView.setBounds(10, 13, 230, 260);
 
+		reportdisplayview.setBounds(260, 13, 230, 260);
+		
 		OrderListView orderListView = new OrderListView(receiveorders,deliverorders );
 		orderListView.setBounds(510, 13, 230, 260);
 		
@@ -60,6 +60,7 @@ public class RestaurantGUI extends JFrame {
 
 
 		getContentPane().add(logListView);
+		getContentPane().add(reportdisplayview);
 		getContentPane().add(orderListView);
 		getContentPane().add(tableListView1);
 		getContentPane().add(tableListView2);
@@ -101,14 +102,14 @@ public class RestaurantGUI extends JFrame {
 		mntmStatusReport = new JMenuItem("Status Report");
 		mnreports.add(mntmStatusReport);
 		
-		mntmShowBill = new JMenuItem("Show Bill - Table 1");
-		mnreports.add(mntmShowBill);
-		
-		mntmShowBill_1 = new JMenuItem("Show Bill - Table 2");
+		mntmShowBill_1 = new JMenuItem("Show Bill - Table 1");
 		mnreports.add(mntmShowBill_1);
 		
-		mntmShowBill_2 = new JMenuItem("Show Bill - Table 3");
+		mntmShowBill_2 = new JMenuItem("Show Bill - Table 2");
 		mnreports.add(mntmShowBill_2);
+		
+		mntmShowBill_3 = new JMenuItem("Show Bill - Table 3");
+		mnreports.add(mntmShowBill_3);
 		
 		JSeparator separator_1 = new JSeparator();
 		mnreports.add(separator_1);
@@ -118,6 +119,10 @@ public class RestaurantGUI extends JFrame {
 
 	}
 
+	public ReportDisplayView getReportViewer(){
+		return reportdisplayview;
+	}
+	
 	public void addOpenRestaurantListener (ActionListener al) {
 		mntmOpenRestaurant.addActionListener(al);
 	}
@@ -128,6 +133,10 @@ public class RestaurantGUI extends JFrame {
 	
 	public void addExitApplicationListener (ActionListener al) {
 		mntmExitApplication.addActionListener(al);
+	}
+	
+	public void addShowBill1Listener (ActionListener al) {
+		mntmShowBill_1.addActionListener(al);
 	}
 	
 	
