@@ -25,7 +25,7 @@ public class Main
 		ShowBill1Controller showreport1 = new ShowBill1Controller(restaurantgui,1);
 		ShowBill2Controller showreport2 = new ShowBill2Controller(restaurantgui,2);
 		ShowBill3Controller showreport3 = new ShowBill3Controller(restaurantgui,3);
-		GenerateReport generatereport = new GenerateReport(restaurantgui);
+		GenerateReportController generatereport = new GenerateReportController(restaurantgui);
 		StatusReportController statusreport = new StatusReportController(restaurantgui);
 
  
