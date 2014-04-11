@@ -104,15 +104,25 @@ public class AllTables {
 		 Integer tableno;
 		 Table tmptable;
 		 int tmporderqty=0;				//maintaining max orders to used in comparison 
-		 int tmptableno=0;				//maintaining table no of highest orders  
+		 int tmptableno=0;
+		 int max = 0;//maintaining table no of highest orders  
+		 int finaltableorder=0;
 		while (tablesIterator.hasNext()){
 			tableno = tablesIterator.next();
 			tmptable = alltables.get(tableno);		
 			if (tmptable.getTotalOrders() > tmporderqty)
+			{
 				tmptableno = tableno;
+				System.out.println("Table no "+tableno+" :: "+tmptable.getTotalOrders());
+				if (tmptable.getTotalOrders() > max) {
+				      max = tmptable.getTotalOrders() ;
+				      finaltableorder = tableno;
+				}
+			}
+			
 		}
-		if (tmptableno != 0)
-			rettable = alltables.get(tmptableno);
+		if (finaltableorder != 0)
+			rettable = alltables.get(finaltableorder);
 		
 		
 		return rettable;
@@ -164,14 +174,22 @@ public class AllTables {
 		 Table tmptable;
 		 double tmpbillamount=0;				//maintaining highest bill amount to used in comparison 
 		 int tmptableno=0;					//maintaining table no of highest bill  
+		 double max = 0;
+		 int finaltableorder = 0;
 		while (tablesIterator.hasNext()){
 			tableno = tablesIterator.next();
 			tmptable = alltables.get(tableno);		
 			if (tmptable.getTotalBill() > tmpbillamount)
 				tmptableno = tableno;
+			
+			
+			if (tmptable.getTotalBill() > max) {
+			      max = tmptable.getTotalBill() ;
+			      finaltableorder = tableno;
+			 	}
 		}
-		if (tmptableno != 0)
-			rettable = alltables.get(tmptableno);
+		if (finaltableorder != 0)
+			rettable = alltables.get(finaltableorder);
 		
 		return rettable;
 	}

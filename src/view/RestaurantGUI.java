@@ -138,6 +138,15 @@ public class RestaurantGUI extends JFrame {
 	public void addShowBill1Listener (ActionListener al) {
 		mntmShowBill_1.addActionListener(al);
 	}
+	public void addShowBill2Listener (ActionListener al) {
+		mntmShowBill_2.addActionListener(al);
+	}
+	public void addShowBill3Listener (ActionListener al) {
+		mntmShowBill_3.addActionListener(al);
+	}
+	public void addGenerateReport1Listener (ActionListener al) {
+		mntmGenerateReport.addActionListener(al);
+	}
 	
 	
 	

@@ -19,8 +19,11 @@ public class Main
 		OpenRestaurantController openrestaurant = new OpenRestaurantController(restaurantgui,restaurant);
 		CloseRestaurantController closerestaurant = new CloseRestaurantController(restaurantgui,restaurant);
 		ExitApplicationController exitapplication = new ExitApplicationController(restaurantgui);
-		ShowBill1Controller showreport = new ShowBill1Controller(restaurantgui,1);
-    	
+		ShowBill1Controller showreport1 = new ShowBill1Controller(restaurantgui,1);
+		ShowBill2Controller showreport2 = new ShowBill2Controller(restaurantgui,2);
+		ShowBill3Controller showreport3 = new ShowBill3Controller(restaurantgui,3);
+		GenerateReport generatereport = new GenerateReport(restaurantgui);
+
  
     }
 

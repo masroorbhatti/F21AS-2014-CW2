@@ -137,9 +137,9 @@ public class Table {
 				report += "\n";
 	
 			}
-			report += String.format("%-56s","");
+			report += String.format("%-36s","");
 			report += "-----\n";
-			report += String.format("%-56s","Total For This Table");
+			report += String.format("%-36s","Total For This Table");
 			report += String.format("%-1s",this.getTotalBill() + "\n");
 		}
 		
