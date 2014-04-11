@@ -7,14 +7,18 @@ import model.Restaurant;
 import model.RestaurantState;
 import view.RestaurantGUI;
 
-
+//This class is controlling event of CloseRestaurant
 public class CloseRestaurantController {
 
 	
 	private Restaurant restaurant;
 	private RestaurantGUI restaurantgui;
 	
-	
+	/**
+	 * Constructor
+	 * @param restaurantgui
+	 * @param restaurant
+	 */
 	public CloseRestaurantController(RestaurantGUI restaurantgui, Restaurant restaurant){
 		this.restaurantgui = restaurantgui;
 		this.restaurant = restaurant;

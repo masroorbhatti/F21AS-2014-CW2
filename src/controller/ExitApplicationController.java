@@ -6,14 +6,15 @@ import java.awt.event.ActionListener;
 
 import view.RestaurantGUI;
 
-
+//This class is controlling event of ExitApplication
 public class ExitApplicationController {
-
-	
 
 	private RestaurantGUI restaurantgui;
 	
-	
+	/**
+	 * Constructor
+	 * @param restaurantgui
+	 */
 	public ExitApplicationController(RestaurantGUI restaurantgui){
 		this.restaurantgui = restaurantgui;
 

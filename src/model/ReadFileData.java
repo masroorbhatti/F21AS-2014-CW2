@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.TreeSet;
 
+//The class is responsible of reading particular data from a selected file
 public class ReadFileData {
 
 	private final String orderfilename = "orderdata.csv";
@@ -15,7 +16,10 @@ public class ReadFileData {
 		System.out.println("Consructor");
 	}
 
-	
+	/**
+	 * Used to read data from Menu File 
+	 * @throws FileNotFoundException
+	 */
 	public void readMenuFile() throws FileNotFoundException	{
 		try {
 			file = new File(menufilename);
@@ -70,7 +74,10 @@ public class ReadFileData {
 
 	}
 	
-	
+	/**
+	 * Is used to Read data from Orders File
+	 * @throws FileNotFoundException
+	 */
 	public void readOrderFile() throws FileNotFoundException	{
 		try {
 			file = new File(orderfilename);
@@ -89,6 +96,10 @@ public class ReadFileData {
 			throw fnf ;
 		}
 	}
+	/**
+	 * Process Line which is taken from Ordes file
+	 * @param line
+	 */
 	private void processOrder(String line) {
 		try {
 			String parts [] = line.split(",");

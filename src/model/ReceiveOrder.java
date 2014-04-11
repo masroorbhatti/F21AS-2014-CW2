@@ -15,7 +15,10 @@ public class ReceiveOrder implements Subject,Runnable {
 		this.waittime=waittime;
 
 	}
-	
+	/**
+	 * This method is called when the thread is started.
+	 * The implementation is compulsory when implementing Runnable interface
+	 */
 	public void run() {
 		while (RestaurantState.getInstance().isOpened()){
 			try {
@@ -38,17 +41,26 @@ public class ReceiveOrder implements Subject,Runnable {
 		ActivityLog.getInstance().addLogRecord("Closing reataurant - New orders stoped");
 	}
 	private List<Observer> registeredObservers = new LinkedList<Observer>();
-	//methods to register, remove and notify observers
+
+	/**
+	 * methods to register observers
+	 */
 	public void registerObserver( Observer obs)
 	{
 		registeredObservers.add( obs);
 	}
 	
+	/**
+	 * methods to remove observers
+	 */
 	public void removeObserver( Observer obs)
 	{
 		registeredObservers.remove( obs);
 	}
 	
+	/**
+	 * methods to notify observers
+	 */
 	public void notifyObservers()
 	{
 		for( Observer obs : registeredObservers)

@@ -150,7 +150,7 @@ public class AllTables {
 		 tablesIterator = alltables.keySet().iterator();	// Iterator to iterate map
 		 Integer tableno;
 		 Table tmptable;
-		 report += "===============_Cost Of ALL Order For Table Used_================\n\n";
+		 report += "===============_Total Bill  For Each of the table Used_================\n\n";
 		while (tablesIterator.hasNext()){
 			tableno = tablesIterator.next();
 			tmptable = alltables.get(tableno);	

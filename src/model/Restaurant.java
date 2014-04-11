@@ -10,7 +10,11 @@ public class Restaurant {
 	private Thread[] waitergetorder;
 	private Thread[] waitressdeliver;
 	
-	
+	/**
+	 * Constructor initializing threads
+	 * @param receiveorders
+	 * @param deliverorders
+	 */
 	public Restaurant(ReceiveOrder[] receiveorders,DeliverOrder[] deliverorders){
 		
 		Initialize();
@@ -28,6 +32,9 @@ public class Restaurant {
 		} 
 	}
 	
+	/**
+	 * Used to read data from all the files
+	 */
 	private void Initialize() {
 		
 		try{
@@ -38,6 +45,10 @@ public class Restaurant {
 			System.out.println("Input file(s) are missing");
 		}
 	}
+	
+	/**
+	 * Instructs thread to start there work now
+	 */
 	public void openRestaurant(){
 		RestaurantState.getInstance().setState(true);
 		ActivityLog.getInstance().addLogRecord("Restaurant started");
@@ -50,6 +61,9 @@ public class Restaurant {
 		
 	}
 	
+	/**
+	 * Changes the state of restaurant so that no more thread may start
+	 */
 	public void closeRestaurant(){
 		
 		RestaurantState.getInstance().setState(false);

@@ -7,14 +7,18 @@ import model.AllTables;
 import model.Table;
 import view.RestaurantGUI;
 
-
+//This class is controlling event of Show Bill for table1
 public class ShowBill1Controller {
 
 	
 	private Table table;
 	private RestaurantGUI restaurantgui;
 	
-	
+	/**
+	 * Constructor
+	 * @param restaurantgui
+	 * @param tableno
+	 */
 	public ShowBill1Controller(RestaurantGUI restaurantgui, int tableno){
 		this.restaurantgui = restaurantgui;
 		this.table = table;
